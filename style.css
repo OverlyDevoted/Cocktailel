@@ -1,0 +1,106 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  height: 100%;
+}
+
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  margin: 0;
+}
+body header {
+  flex: 0;
+  background-color: white;
+  color: black;
+}
+body main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+body footer {
+  flex: 0;
+}
+body aside {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: 0 3em;
+  flex-direction: column;
+  gap: 1rem;
+}
+body .btn {
+  background-color: white;
+  color: black;
+  font-weight: 900;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: solid 0.5rem burlywood;
+}
+body .btn:hover {
+  filter: invert(100%);
+  cursor: pointer;
+}
+body #coctail-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: brown;
+  border-radius: 1em;
+  padding: 1rem;
+  position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+body #coctail-recipe p {
+  width: 400px;
+}
+body #coctail-recipe img {
+  height: 400px;
+  border: solid 0.5rem white;
+  transition-property: scale;
+  transition-duration: 300ms;
+}
+body #coctail-recipe img:hover {
+  transition-property: scale;
+  transition-duration: 300ms;
+  scale: 1.5;
+}
+body #coctail-recipe ol {
+  padding: 0;
+  text-align: left;
+  align-self: left;
+}
+body #coctail-recipe::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  left: 0;
+  top: 0;
+  margin: 1em;
+  border-radius: 100%;
+}
+body #coctail-recipe.alcoholic::before {
+  background-color: greenyellow;
+}
+body #coctail-recipe.non::before {
+  background-color: dodgerblue;
+}/*# sourceMappingURL=style.css.map */

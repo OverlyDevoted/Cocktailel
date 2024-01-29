@@ -1,0 +1,109 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+$el-width: 400px;
+:root {
+    height: 100%;
+}
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    margin: 0;
+    header {
+        flex:0;
+        background-color: white;
+        color: black;
+    }
+    main {
+        flex:1;
+        display: flex;
+        align-items: center;
+    }
+    footer {
+        flex:0;
+    }
+    aside {
+        display: flex;
+        justify-content: center;
+        
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 0 3em;
+        flex-direction: column;
+        gap:1rem;
+        // background-color: green;
+    }
+    .btn {
+        background-color: white;
+        color: black;
+        font-weight: 900;
+        font-size: 1.5rem;
+        padding: .5rem;
+        border: solid .5rem burlywood;
+        &:hover {
+            filter: invert(100%);
+            cursor: pointer;
+        }
+    }
+    #coctail-recipe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        margin: 0 auto;
+        background-color: brown;
+        border-radius: 1em;
+        padding: 1rem;
+        position: relative;
+        height: fit-content;
+        & p {
+            width: $el-width;
+        }
+
+        & img {
+            height: $el-width;
+            border: solid 0.5rem white;
+            transition-property: scale;
+            transition-duration: 300ms;
+            &:hover {
+                transition-property: scale;
+                transition-duration: 300ms;
+                scale: 1.5;
+            }
+        }
+
+        & ol {
+            padding: 0;
+            text-align: left;
+            align-self: left;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            left: 0;
+            top: 0;
+            margin: 1em;
+            border-radius: 100%;
+        }
+        &.alcoholic::before {
+            background-color: greenyellow;
+        }
+        &.non::before {
+            background-color: dodgerblue;
+        }
+    }
+}
