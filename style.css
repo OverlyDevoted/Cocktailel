@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -9,7 +10,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(252, 244, 235);
   color: white;
   text-align: center;
   font-family: sans-serif;
@@ -21,8 +22,8 @@ body {
 }
 body header {
   flex: 0;
-  background-color: white;
-  color: black;
+  background-color: #C72828;
+  color: white;
 }
 body main {
   flex: 1;
@@ -30,6 +31,7 @@ body main {
   align-items: center;
 }
 body footer {
+  background-color: #C72828;
   flex: 0;
 }
 body aside {
@@ -43,15 +45,17 @@ body aside {
   gap: 1rem;
 }
 body .btn {
-  background-color: white;
-  color: black;
-  font-weight: 900;
+  background-color: #C72828;
+  color: white;
+  font-weight: 200;
   font-size: 1.5rem;
   padding: 0.5rem;
-  border: solid 0.5rem burlywood;
+  border: none;
+  border-radius: 0.25em;
+  text-decoration: none;
 }
 body .btn:hover {
-  filter: invert(100%);
+  background-color: #943B3B;
   cursor: pointer;
 }
 body #coctail-recipe {
@@ -61,46 +65,51 @@ body #coctail-recipe {
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
-  background-color: brown;
+  background-color: #943B3B;
   border-radius: 1em;
-  padding: 1rem;
   position: relative;
   height: -moz-fit-content;
   height: fit-content;
-}
-body #coctail-recipe p {
   width: 400px;
 }
 body #coctail-recipe img {
+  display: block;
+  box-sizing: content-box;
   height: 400px;
-  border: solid 0.5rem white;
-  transition-property: scale;
+  border-bottom: solid 0.5rem white;
+  border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+  transition-property: scale, border-bottom;
   transition-duration: 300ms;
 }
 body #coctail-recipe img:hover {
-  transition-property: scale;
+  transition-property: scale, border-bottom;
   transition-duration: 300ms;
   scale: 1.5;
+  border-bottom: solid 0.5em transparent;
+}
+body #coctail-recipe section:last-child {
+  padding: 0.5em 2em;
+}
+body #coctail-recipe p {
+  text-align: justify;
 }
 body #coctail-recipe ol {
-  padding: 0;
+  padding: 0 0 0 1em;
   text-align: left;
   align-self: left;
 }
 body #coctail-recipe::before {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: gray;
   left: 0;
   top: 0;
-  margin: 1em;
-  border-radius: 100%;
+  margin: 0.5em;
+  font-size: 2em;
 }
 body #coctail-recipe.alcoholic::before {
-  background-color: greenyellow;
+  content: "🥴";
 }
 body #coctail-recipe.non::before {
-  background-color: dodgerblue;
+  content: "😢";
 }/*# sourceMappingURL=style.css.map */
