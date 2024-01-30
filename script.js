@@ -30,8 +30,9 @@ const generateRecipe = async (id) => {
     coctailContainer.setAttribute("class", drinks[0].strAlcoholic.toLowerCase() === "alcoholic" ? "alcoholic" : "non")
 }
 const generateBtn = document.getElementById("generate-btn");
-
+const loadingContainer = document.getElementById("coctail-name")
 generateBtn.addEventListener("click", (e) => {
+    loadingContainer.textContent = "Loading..."
     generateRecipe();
 })
 
