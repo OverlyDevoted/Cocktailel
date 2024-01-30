@@ -1,0 +1,13 @@
+@mixin lg {
+    @media screen and (min-width:750px) {
+        @content
+    }
+}
+
+;
+
+@mixin xl {
+    @media screen and (min-width:1200px) {
+        @content
+    }
+}
