@@ -30,7 +30,7 @@ const renderDrinkCard = (drink) => {
     infoContainer.append(drinkNameEl);
 
     drinkContainer.addEventListener("click", () => {
-        window.location.assign(window.location.origin + "Cocktailel/?cocktail=" + drink.idDrink);
+        window.location.assign(window.location.origin + "/Cocktailel/?cocktail=" + drink.idDrink);
     })
     drinkContainer.classList.add(drink.alcoholic?"alcoholic":"non")
     drinkContainer.append(photoContainer, infoContainer);
