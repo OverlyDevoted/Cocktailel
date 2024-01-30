@@ -76,12 +76,18 @@ body #coctail-recipe {
   position: relative;
   height: -moz-fit-content;
   height: fit-content;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
+}
+@media screen and (min-width: 750px) {
+  body #coctail-recipe {
+    width: 400px;
+  }
 }
 body #coctail-recipe img {
   display: block;
   box-sizing: content-box;
-  height: 400px;
+  width: 100%;
   border-bottom: solid 0.5rem white;
   border-top-right-radius: 0.5em;
   border-top-left-radius: 0.5em;
@@ -89,6 +95,9 @@ body #coctail-recipe img {
   transition-duration: 300ms;
 }
 @media screen and (min-width: 750px) {
+  body #coctail-recipe img {
+    height: auto;
+  }
   body #coctail-recipe img:hover {
     transition-property: scale, border-bottom;
     transition-duration: 300ms;

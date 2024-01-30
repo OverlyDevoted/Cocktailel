@@ -31,10 +31,12 @@ body {
         flex: 0;
         background-color: $secondary-back;
         color: white;
+
         nav {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
             @include breakpoint.lg {
                 margin-bottom: 1em;
                 gap: 1em;
@@ -85,13 +87,19 @@ body {
         border-radius: 1em;
         position: relative;
         height: fit-content;
-        width: $el-width;
+        width: 90%;
+        max-width: 400px;
 
+        @include breakpoint.lg {
+            width: $el-width;
+
+        }
 
         & img {
             display: block;
             box-sizing: content-box;
-            height: $el-width;
+            width: 100%;
+            
             border-bottom: solid 0.5rem white;
             border-top-right-radius: 0.5em;
             border-top-left-radius: 0.5em;
@@ -99,6 +107,7 @@ body {
             transition-duration: 300ms;
 
             @include breakpoint.lg {
+                height: auto;
                 &:hover {
                     transition-property: scale, border-bottom;
                     transition-duration: 300ms;
