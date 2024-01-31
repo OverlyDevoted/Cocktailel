@@ -12,7 +12,7 @@ export const getDrinkCard = (drink) => {
     infoContainer.append(drinkNameEl);
 
     drinkContainer.addEventListener("click", () => {
-        const isLocalHost = window.origin.includes("overlydevoted") ? "Cocktailel/" : "";
+        const isLocalHost = window.origin.includes("overlydevoted") ? "%43ocktailel/" : "";
         window.location.assign(window.location.origin + `/${isLocalHost}?cocktail=` + drink.idDrink);
     })
     drinkContainer.classList.add(drink.strAlcoholic=="Alcoholic" ? "alcoholic" : "non")
