@@ -1,5 +1,5 @@
-@use "./../breakpoint";
-
+@use "./../scss/drinksCard";
+@use "./../scss/breakpoint";
 body {
     aside {
         flex-direction: row;
@@ -29,51 +29,5 @@ body {
     @include breakpoint.xl {
         grid-template-columns: repeat(4, 1fr);
     }
-
-    &>article {
-        background-color: rgb(77, 0, 10);
-        border-radius: 1em;
-        overflow: hidden;
-        max-width: 300px;
-        position: relative;
-        transition-property: scale;
-        transition-duration: 300ms;
-
-        @include breakpoint.lg {
-
-            &:hover {
-                cursor: pointer;
-                scale: 1.25;
-                z-index: 1;
-                transition-property: scale;
-                transition-duration: 300ms;
-            }
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: .5em;
-            font-size: 2em;
-        }
-
-        &.alcoholic::before {
-            content: "🥴";
-        }
-
-        &.non::before {
-            content: "😢";
-        }
-
-        span {
-            font-size: 1.5em;
-        }
-
-        img {
-            width: 300px;
-        }
-
-    }
+    
 }

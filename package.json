@@ -1,0 +1,23 @@
+{
+  "name": "cocktailel",
+  "version": "0.0.1",
+  "description": "Website about cocktails",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OverlyDevoted/Cocktailel.git"
+  },
+  "keywords": [
+    "Cocktails"
+  ],
+  "author": "Robert Dulko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OverlyDevoted/Cocktailel/issues"
+  },
+  "homepage": "https://github.com/OverlyDevoted/Cocktailel#readme",
+  "type": "module"
+}
