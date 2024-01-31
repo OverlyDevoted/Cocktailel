@@ -8,21 +8,19 @@ function PRNG(seed, modulo) {
 
     return str
 }
-
 function addZero(number, obj, property) {
     if (number / 10 < 1) {
         obj[property] *= 10;
     }
 }
-
 function generateSeed(date) {
     const seedObj = { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() }
     addZero(seedObj.month, seedObj, "year")
     addZero(seedObj.day, seedObj, "month")
     return +(seedObj.year.toString() + seedObj.month.toString() + seedObj.day.toString())
 }
-
 export const getDrinkIndex = async ()=>{
     const drinks = await getDrinks();
-    return PRNG(generateSeed(new Date()), drinks.length);
+    return PRNG(generateSeed(new Date()), drinks.length)
+
 }
