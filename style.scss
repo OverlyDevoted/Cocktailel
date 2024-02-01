@@ -1,20 +1,15 @@
 @use "./scss/breakpoint";
-
+@use "./scss/variables";
 *,
 *::after,
 *::before {
     box-sizing: border-box;
 }
 
-$el-width: 400px;
 
 :root {
     height: 100%;
 }
-
-$main-back: #332929;
-$secondary-back: #C72828;
-$accent-back: #943B3B;
 
 body {
     background-color: rgb(252, 244, 235);
@@ -29,7 +24,7 @@ body {
 
     header {
         flex: 0;
-        background-color: $secondary-back;
+        background-color: variables.$secondary-back;
         color: white;
 
         nav {
@@ -56,13 +51,13 @@ body {
     }
 
     footer {
-        background-color: $secondary-back;
+        background-color: variables.$secondary-back;
         flex: 0;
     }
 
 
     .btn {
-        background-color: $secondary-back;
+        background-color: variables.$secondary-back;
         color: white;
         font-weight: 200;
         font-size: 1.5rem;
@@ -72,7 +67,7 @@ body {
         text-decoration: none;
 
         &:hover {
-            background-color: $accent-back;
+            background-color: variables.$accent-back;
             cursor: pointer;
         }
     }
@@ -83,7 +78,7 @@ body {
         align-items: center;
         width: fit-content;
         margin: 0 auto;
-        background-color: $accent-back;
+        background-color: variables.$accent-back;
         border-radius: 1em;
         position: relative;
         height: fit-content;
@@ -91,7 +86,7 @@ body {
         max-width: 400px;
 
         @include breakpoint.lg {
-            width: $el-width;
+            width: variables.$el-width;
 
         }
 

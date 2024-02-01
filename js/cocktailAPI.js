@@ -13,3 +13,12 @@ export const getAllDrinks = async () => {
 
     return allDrinks;
 }
+export const getIngredientList = (drink) => {
+    const ingredientList = Array(14).fill(undefined)
+        .map((_, idx) => {
+            let ingredient = { ingredient: drink[`strIngredient${idx + 1}`], measure: drink[`strMeasure${idx + 1}`] }
+            return ingredient;
+        })
+        .filter(val => val.ingredient);
+    return ingredientList;
+}

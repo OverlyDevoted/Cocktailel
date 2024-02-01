@@ -1,3 +1,5 @@
+import { getIngredientList } from "./cocktailAPI.js";
+
 const generateRecipe = async (id) => {
     let response;
     console.log(id)
@@ -12,12 +14,7 @@ const generateRecipe = async (id) => {
     coctailContainer.querySelector("#coctail-instructions").textContent = drinks[0].strInstructions;
 
     coctailContainer.querySelector("img").src = drinks[0].strDrinkThumb;
-    const ingredientList = Array(14).fill(undefined)
-        .map((_, idx) => {
-            let ingredient = { ingredient: drinks[0][`strIngredient${idx + 1}`], measure: drinks[0][`strMeasure${idx + 1}`] }
-            return ingredient;
-        })
-        .filter(val => val.ingredient);
+    const ingredientList = getIngredientList(drinks[0]);
 
     const ingredientEl = coctailContainer.querySelector("#ingredients");
     ingredientEl.innerHTML = "";

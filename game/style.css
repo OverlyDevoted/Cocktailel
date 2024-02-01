@@ -36,4 +36,22 @@
 }
 .drink-card img {
   width: 300px;
+  display: block;
+}
+
+main {
+  color: #C72828;
+  flex-direction: column;
+}
+main .drink-card {
+  color: white;
+}
+
+.reveal {
+  color: black;
+  cursor: pointer;
+}
+.reveal:hover {
+  background-color: black;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

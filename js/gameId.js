@@ -22,5 +22,4 @@ function generateSeed(date) {
 export const getDrinkIndex = async ()=>{
     const drinks = await getDrinks();
     return PRNG(generateSeed(new Date()), drinks.length)
-
 }

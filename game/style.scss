@@ -1,1 +1,20 @@
-@use "./../scss/drinksCard"
+@use "./../scss/drinksCard";
+@use "./../scss/variables";
+
+main {
+    color: variables.$secondary-back;
+    flex-direction: column;
+    .drink-card {
+        color: white;
+    }
+    
+}
+.reveal {
+    color: black;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
