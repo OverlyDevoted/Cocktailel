@@ -1,6 +1,7 @@
 @use "./breakpoint";
+@use "./variables";
 .drink-card {
-    background-color: rgb(77, 0, 10);
+    background-color: variables.$card-color;
     border-radius: 1em;
     overflow: hidden;
     max-width: 300px;

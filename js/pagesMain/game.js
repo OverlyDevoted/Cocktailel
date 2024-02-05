@@ -1,22 +1,20 @@
 //maybe users could have a better guessing experience if instead of seperating every ingredient string into individual words and creating an array of unique words but checking against full ingredient strings and if some amount of letters matches then we get a guess
 import { getDrinks, getIngredientList } from "../cocktailAPI.js";
 import { getDrinkIndex } from "../gameId.js";
+import { GameState } from "../gameState.js";
+
 
 const drinks = await getDrinks();
-const drinkOfTheDay = drinks[await getDrinkIndex()];
+const drinkIdx = await getDrinkIndex();
+const drinkOfTheDay = drinks[drinkIdx];
 const fullDrinkRes = await fetch(`https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkOfTheDay.idDrink}`)
 const fullDrinkJson = await fullDrinkRes.json();
 const fullDrinkInfo = fullDrinkJson.drinks[0];
 
-// console.log(fullDrinkInfo);
-// console.log(fullDrinkInfo.strInstructions)
-let ingredientList = getIngredientList(fullDrinkInfo);
-ingredientList = ingredientList.map((ingredient) => ingredient.ingredient);
-
 const getWordList = (array) => {
     const wordList = [];
     for (let i = 0; i < array.length; i++) {
-        let ingredientArr = ingredientList[i].split(" ");
+        let ingredientArr = array[i].split(" ");
         ingredientArr = ingredientArr.map((val) => val.toLowerCase())
         wordList.push(...ingredientArr);
     }
@@ -34,41 +32,89 @@ const replaceWordsFromWordlist = (paragraph, wordlist) => {
     })
     return words.join(" ");
 }
-const generateInputs = (array, callback, ...args) => {
+const generateInputs = (array, gameState, callback, ...args) => {
     const inputs = [];
-    array.forEach((val) => {
+    array.forEach((val, idx) => {
+        const li = document.createElement("li");
+
         const input = document.createElement("input");
-        input.setAttribute("placeholder", val);
+        li.appendChild(input);
+        // input.setAttribute("placeholder", val);
+        if (gameState.today.answers[idx].toLowerCase() === val.toLowerCase()) {
+            input.setAttribute("disabled", null);
+            input.classList.add("correct-guess")
+            input.setAttribute("value", val);
+        }
         input.addEventListener("input", (e) => {
             if (e.target.value.toLowerCase() === val.toLowerCase()) {
                 const seperateWords = e.target.value.toLowerCase().split(" ");
-                console.log(seperateWords)
                 if (callback)
-                    callback(...args, seperateWords);
+                    callback(seperateWords);
+                e.target.setAttribute("disabled", null);
+                e.target.classList.add("correct-guess")
+                gameState.saveAnswer(idx, e.target.value)
             }
         })
-        inputs.push(input);
+        inputs.push(li);
     })
     return inputs;
 }
 const removeFromArray = (array, ...args) => {
-    console.log(array)
-    console.log([...args[0]])
     array = array.filter((val) => ![...args[0]].some((arg) => val === arg))
-    console.log(array)
+    return array
 }
 const replaceParagraph = () => {
     const instructionParagraph = document.getElementById("recipe-instruction");
+
     return (paragraph, uniqueIngredients) => {
-        instructionParagraph.innerHTML = replaceWordsFromWordlist(paragraph, uniqueIngredients)
+        const elements = replaceWordsFromWordlist(paragraph, uniqueIngredients);
+        instructionParagraph.innerHTML = elements
     }
 }
-const uniqueIngredients = [...new Set(getWordList(ingredientList))];
+// MAIN
+
+//setup score
+// const maxScore = 1000;
+// let currentScore = maxScore;
+// const scoreContainer = document.getElementById("score");
+// const updateGameState = (decrease) => {
+//     currentScore -= decrease ? decrease : 0;
+//     scoreContainer.textContent = currentScore;
+// }
+// updateGameState();
+
+//get ingredients and other info
+let ingredientList = getIngredientList(fullDrinkInfo);
+ingredientList = ingredientList.map((ingredient) => ingredient.ingredient);
+
+//check game state
+const gameState = new GameState(drinkIdx, ingredientList.length, () => {
+    return () => {
+        const winScreen = document.getElementById("win-screen")
+        winScreen.style.display = "flex";
+    }
+});
+
+//get unique ingredients
+let uniqueIngredients = [...new Set(getWordList(ingredientList))];
 const drinkImg = document.getElementById("drink-img");
-const paragraphReplacer = replaceParagraph();
-
-paragraphReplacer(fullDrinkInfo.strInstructions, uniqueIngredients);
 drinkImg.src = fullDrinkInfo.strDrinkThumb;
+const drinkName = document.getElementById("drink-name");
+drinkName.textContent = fullDrinkInfo.strDrink;
 
+
+//initial paragraph generation
+const paragraphReplacer = replaceParagraph();
+const answered = [...new Set(getWordList(gameState.today.answers))];
+uniqueIngredients = removeFromArray(uniqueIngredients, answered)
+paragraphReplacer(fullDrinkInfo.strInstructions, uniqueIngredients);
+
+//game logic
+const correctGuess = (ingredientList) => {
+    uniqueIngredients = removeFromArray(uniqueIngredients, ingredientList);
+    paragraphReplacer(fullDrinkInfo.strInstructions, uniqueIngredients);
+}
+
+//input logic
 const inputForm = document.getElementById("inputs");
-inputForm.append(...generateInputs(ingredientList, removeFromArray, uniqueIngredients));
+inputForm.append(...generateInputs(ingredientList, gameState, correctGuess));

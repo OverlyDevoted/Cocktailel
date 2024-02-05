@@ -21,14 +21,24 @@
         </nav>
     </header>
     <main id="game-container">
-        <h2>Part 1. Guess the ingredients</h2>
-        <article id="game-card" class="drink-card">
-            <img id="drink-img" src="" alt="Loading...">
-        </article>
-        <p id="recipe-instruction"></p>
-        <form id="inputs">
-
+        <section id="win-screen">
+            <span class="h2">Congratulations!<br>You have solved the puzzle<br>Come back the next day</span>
+        </section>
+        <h2>Guess the ingredients</h2>
+        <section id="drink-info-wrapper">
+            <article id="game-card" class="drink-card">
+                <img id="drink-img" src="" alt="Loading...">
+                <p id="drink-name"></p>
+            </article>
+            <p id="recipe-instruction"></p>
+        </section>
+        <form>
+            <ol id="inputs"></ol>
         </form>
+        <!-- <section style="opacity: 0;">
+            <h2>Current score</h2>
+            <div id="score"></div>
+        </section> -->
     </main>
     <footer>
         <h2>© Robert Dulko 2024. All rights reserved 🍹</h2>

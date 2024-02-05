@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .drink-card {
-  background-color: rgb(77, 0, 10);
+  background-color: #4d000a;
   border-radius: 1em;
   overflow: hidden;
   max-width: 300px;
@@ -43,15 +43,95 @@ main {
   color: #C72828;
   flex-direction: column;
 }
+main#game-container {
+  color: white;
+  background-color: #4d000a;
+  border-radius: 0.5em;
+  padding: 1em;
+  position: relative;
+  margin: 0 1em;
+}
+@media screen and (min-width: 750px) {
+  main#game-container {
+    margin: 0 auto;
+  }
+}
 main .drink-card {
   color: white;
+}
+@media screen and (min-width: 750px) {
+  main > #drink-info-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    -moz-column-gap: 1em;
+         column-gap: 1em;
+  }
+}
+main > #drink-info-wrapper > * {
+  max-width: 300px;
+}
+main form {
+  width: 100%;
+}
+main form > ol {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  width: 100%;
+  padding: 0 2em;
+}
+@media screen and (min-width: 750px) {
+  main form > ol {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em 2em;
+  }
 }
 
 .reveal {
   color: black;
-  cursor: pointer;
 }
 .reveal:hover {
   background-color: black;
   color: white;
+}
+
+input {
+  box-sizing: border-box;
+  border: solid 4px white;
+  border-radius: 0.25em;
+  width: 100%;
+}
+input:focus {
+  border: solid 4px black;
+  outline: none;
+}
+input.correct-guess {
+  transition-property: background-color;
+  transition-duration: 300ms;
+  background-color: #f79031;
+  border-style: solid;
+  border-color: #f79031;
+  font-weight: 900;
+  color: #4d000a;
+}
+
+#win-screen {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5em;
+  display: none;
+}
+#win-screen .h2 {
+  font-size: 2em;
 }/*# sourceMappingURL=style.css.map */
