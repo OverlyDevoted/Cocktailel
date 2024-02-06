@@ -32,14 +32,14 @@ const replaceWordsFromWordlist = (paragraph, wordlist) => {
     })
     return words.join(" ");
 }
-const generateInputs = (array, gameState, callback, ...args) => {
+const generateInputs = (array, placeholders, gameState, callback, ...args) => {
     const inputs = [];
     array.forEach((val, idx) => {
         const li = document.createElement("li");
 
         const input = document.createElement("input");
         li.appendChild(input);
-        // input.setAttribute("placeholder", val);
+        input.setAttribute("placeholder", placeholders[idx]);
         if (gameState.today.answers[idx].toLowerCase() === val.toLowerCase()) {
             input.setAttribute("disabled", null);
             input.classList.add("correct-guess")
@@ -85,6 +85,7 @@ const replaceParagraph = () => {
 
 //get ingredients and other info
 let ingredientList = getIngredientList(fullDrinkInfo);
+const measures = ingredientList.map((val) => val.measure);
 ingredientList = ingredientList.map((ingredient) => ingredient.ingredient);
 
 //check game state
@@ -117,4 +118,4 @@ const correctGuess = (ingredientList) => {
 
 //input logic
 const inputForm = document.getElementById("inputs");
-inputForm.append(...generateInputs(ingredientList, gameState, correctGuess));
+inputForm.append(...generateInputs(ingredientList, measures, gameState, correctGuess));

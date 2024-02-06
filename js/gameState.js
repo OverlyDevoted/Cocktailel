@@ -15,16 +15,14 @@ export class GameState {
             this.data = JSON.parse(this.data);
             this.isLastToday = false;
             this.today = { idx: idx, answers: new Array(answers).fill("") }
-            if (this.data.at(-1).idx == idx) {
-                this.today = this.data.at(-1);
-                this.isLastToday = true;
+            if (this.data.idx == idx) {
+                this.today = this.data;
             }
         }
         else {
             // console.log("empty");
-            this.data = [];
             this.today = { idx: idx, answers: new Array(answers).fill("") }
-            this.isLastToday = false;
+            this.data = this.today;
         }
         this.addOnWin(onWin, ...args)
         this.checkWin();
@@ -32,12 +30,7 @@ export class GameState {
     saveAnswer(idx, answer) {
         // console.log(idx, answer)
         this.today.answers[idx] = answer;
-        if (this.isLastToday)
-            this.data[this.data.length - 1] = this.today;
-        else {
-            this.isLastToday = true;
-            this.data.push(this.today);
-        }
+        this.data = this.today;
         localStorage.setItem("save", JSON.stringify(this.data));
         this.checkWin();
         // console.log(JSON.parse(localStorage.getItem("save")))
